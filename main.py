@@ -21,25 +21,23 @@ class PySimpleRss:
         ]]
 
     @staticmethod
-    def get_entries_list(key, rss):
-        i = 0
-        entries = []
-        for ent in feedparser.parse(rss)['entries']:
-            entries.append({'site': key, 'key': key + str(i), 'link': ent['link'], 'title': ent['title']})
-            i += 1
-            if i > 6:
-                break
-        return entries
-
-    @staticmethod
     def format_text(v, length=17):
         return '[{0}] '.format(v['site']) + v['title'][:length] + ('...' if v['title'][length:] else '')
 
     def get_all_entries(self):
-        self.nhk = self.get_entries_list('nhk', 'https://www.nhk.or.jp/rss/news/cat0.xml')
-        self.asa = self.get_entries_list('asa', 'http://www.asahi.com/rss/asahi/newsheadlines.rdf')
-        self.mai = self.get_entries_list('mai', 'https://mainichi.jp/rss/etc/mainichi-flash.rss')
-        self.hat = self.get_entries_list('hat', 'https://b.hatena.ne.jp/entrylist.rss')
+        def get_entries_list(key, rss):
+            i = 0
+            entries = []
+            for ent in feedparser.parse(rss)['entries']:
+                entries.append({'site': key, 'key': key + str(i), 'link': ent['link'], 'title': ent['title']})
+                i += 1
+                if i > 6:
+                    break
+            return entries
+        self.nhk = get_entries_list('nhk', 'https://www.nhk.or.jp/rss/news/cat0.xml')
+        self.asa = get_entries_list('asa', 'http://www.asahi.com/rss/asahi/newsheadlines.rdf')
+        self.mai = get_entries_list('mai', 'https://mainichi.jp/rss/etc/mainichi-flash.rss')
+        self.hat = get_entries_list('hat', 'https://b.hatena.ne.jp/entrylist.rss')
 
     def jump_link(self, key):
         entries = self.nhk + self.asa + self.mai + self.hat
