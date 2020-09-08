@@ -12,11 +12,8 @@ class PySimpleRss:
         self.get_all_entries()
         self.layout = [[
             sg.Column([[sg.T(self.format_text(v), enable_events=True, key='link_' + v['key'])] for v in self.nhk]),
-            sg.VSeparator(),
             sg.Column([[sg.T(self.format_text(v), enable_events=True, key='link_' + v['key'])] for v in self.asa]),
-            sg.VSeparator(),
             sg.Column([[sg.T(self.format_text(v), enable_events=True, key='link_' + v['key'])] for v in self.mai]),
-            sg.VSeparator(),
             sg.Column([[sg.T(self.format_text(v), enable_events=True, key='link_' + v['key'])] for v in self.hat]),
         ]]
 
