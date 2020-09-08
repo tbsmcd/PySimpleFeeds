@@ -3,6 +3,7 @@ import feedparser
 import webbrowser
 
 sg.theme('Black')
+chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
 
 
 class PySimpleRss:
@@ -43,7 +44,6 @@ class PySimpleRss:
     def jump_link(self, key):
         entries = self.nhk + self.asa + self.mai + self.hat
         key_links = {val['key']: val['link'] for val in entries}
-        chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
         webbrowser.get(chrome_path).open(key_links[key])
 
     def view(self):
