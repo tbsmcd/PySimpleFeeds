@@ -1,0 +1,15 @@
+browser:
+  path: 'open -a /Applications/Google\ Chrome.app %s'
+rss:
+  - key: 'nhk'
+    name: 'NHK'
+    link: 'https://www.nhk.or.jp/rss/news/cat0.xml'
+  - key: 'asa'
+    name: '朝日'
+    link: 'http://www.asahi.com/rss/asahi/newsheadlines.rdf'
+  - key: 'mai'
+    name: '毎日'
+    link: 'https://mainichi.jp/rss/etc/mainichi-flash.rss'
+  - key: 'hat'
+    name: 'はてブ'
+    link: 'https://b.hatena.ne.jp/entrylist.rss'
