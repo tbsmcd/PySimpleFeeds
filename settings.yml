@@ -1,5 +1,6 @@
-browser:
-  path: 'open -a /Applications/Google\ Chrome.app %s'
+rows: 6
+length: 17
+browser_path: 'open -a /Applications/Google\ Chrome.app %s'
 rss:
   - key: 'nhk'
     name: 'NHK'
