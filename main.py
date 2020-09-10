@@ -3,7 +3,7 @@ import feedparser
 import yaml
 import webbrowser
 
-sg.theme('Black')
+sg.theme('Dark')
 
 
 class PySimpleRss:
@@ -47,7 +47,7 @@ class PySimpleRss:
                     webbrowser.get(browser).open(entry['link'])
 
     def view(self):
-        window = sg.Window('NEWS', self.layout)
+        window = sg.Window('Feeds', self.layout)
         while True:
             event, values = window.read(timeout=1000)
             if event == sg.WIN_CLOSED:
