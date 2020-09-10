@@ -21,7 +21,7 @@ class PySimpleRss:
         ]]
 
     @staticmethod
-    def format_text(v, length=17):
+    def format_text(v, length):
         return '[{0}] '.format(v['site']) + v['title'][:length] + ('...' if v['title'][length:] else '')
 
     def get_all_entries(self):
@@ -33,7 +33,7 @@ class PySimpleRss:
                     {'site': rss['name'], 'key': rss['key'] + str(i), 'link': ent['link'], 'title': ent['title']}
                 )
                 i += 1
-                if i > 6:
+                if i > self.rows:
                     break
             self.entries[rss['key']] = entries
 
