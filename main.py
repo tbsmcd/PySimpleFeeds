@@ -28,7 +28,7 @@ class Reader:
                     break
             self.entries[rss['key']] = entries
 
-    def jump_link(self, key):
+    def jump_link(self, key: str):
         browser = self.config.get('browser_path')
         if browser is None:
             return
