@@ -10,6 +10,13 @@ This is an RSS reader that works with Python. I made it as a sample. I tried usi
 
 ![screen shot](https://user-images.githubusercontent.com/174922/92941498-66c46580-f48b-11ea-9e13-7697cd590877.png)
 
+## Requirements
+
+- [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)
+- [feedparser](https://pythonhosted.org/feedparser/)
+- [PyYaml](https://pyyaml.org/wiki/PyYAMLDocumentation)
+
+
 ## Usage
 
 - `$ cp settings.yml.sample settings.yml`  
