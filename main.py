@@ -8,8 +8,6 @@ class Reader:
     def __init__(self):
         with open('settings.yml') as file:
             self.config = yaml.safe_load(file.read())
-            theme = self.config.get('theme', 'Dark')
-            sg.theme(theme)
         self.entries = {}
 
     def format_text(self, v):
@@ -40,6 +38,7 @@ class Reader:
                     webbrowser.get(browser).open(entry['link'])
 
     def view(self):
+        sg.theme(self.config.get('theme', 'Dark'))
         self.get_all_entries()
         layout = [[
             sg.Column([[
