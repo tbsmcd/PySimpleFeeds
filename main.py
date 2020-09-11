@@ -3,13 +3,13 @@ import feedparser
 import yaml
 import webbrowser
 
-sg.theme('Dark')
-
 
 class Reader:
     def __init__(self):
         with open('settings.yml') as file:
             self.config = yaml.safe_load(file.read())
+            theme = self.config.get('theme', 'Dark')
+            sg.theme(theme)
         self.entries = {}
 
     def format_text(self, v):

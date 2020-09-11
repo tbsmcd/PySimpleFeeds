@@ -1,3 +1,4 @@
+theme: 'Dark'
 rows: 6
 length: 17
 browser_path: 'open -a /Applications/Google\ Chrome.app %s'
