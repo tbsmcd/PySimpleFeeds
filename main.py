@@ -37,7 +37,7 @@ class Reader:
                 if entry['key'] == key:
                     webbrowser.get(browser).open(entry['link'])
 
-    def view(self):
+    def show(self):
         sg.theme(self.config.get('theme', 'Dark'))
         self.get_all_entries()
         layout = [[
@@ -62,4 +62,4 @@ class Reader:
 
 if __name__ == '__main__':
     ps = Reader()
-    ps.view()
+    ps.show()
