@@ -6,7 +6,7 @@ import webbrowser
 sg.theme('Dark')
 
 
-class PySimpleRss:
+class Reader:
     def __init__(self):
         with open('settings.yml') as file:
             self.config = yaml.safe_load(file.read())
@@ -62,5 +62,5 @@ class PySimpleRss:
 
 
 if __name__ == '__main__':
-    ps = PySimpleRss()
+    ps = Reader()
     ps.view()
