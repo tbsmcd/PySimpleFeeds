@@ -1,7 +1,7 @@
 rows: 6
 length: 17
 browser_path: 'open -a /Applications/Google\ Chrome.app %s'
-rss:
+feeds:
   - key: 'nhk'
     name: 'NHK'
     link: 'https://www.nhk.or.jp/rss/news/cat0.xml'
