@@ -58,6 +58,7 @@ class Reader:
                 for site in self.entries.values():
                     for entry in site:
                         window['link_' + entry['key']].update(self.format_text(entry))
+        window.close()
 
 
 if __name__ == '__main__':
