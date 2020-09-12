@@ -47,7 +47,7 @@ class Reader:
         ]]
         window = sg.Window('Feeds', layout)
         while True:
-            event, values = window.read(timeout=1000)
+            event, values = window.read(timeout=60000)
             if event == sg.WIN_CLOSED:
                 break
             if event.startswith('link_'):
