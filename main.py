@@ -33,7 +33,7 @@ class MainWindow:
                         title = ent['title']
                     else:
                         link = ''
-                        title = '---'
+                        title = ''
                     entries.append(
                         {'site': rss['name'], 'key': rss['key'] + str(i), 'link': link, 'title': title}
                     )
@@ -42,7 +42,7 @@ class MainWindow:
                     if i == 0:
                         title = "HTTP_STATUS: {0}".format(feed.status)
                     else:
-                        title = '---'
+                        title = ''
                     entries.append(
                         {'site': rss['name'], 'key': rss['key'] + str(i), 'link': '', 'title': title}
                     )
