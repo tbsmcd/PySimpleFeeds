@@ -1,0 +1,11 @@
+theme: 'Dark'
+rows: 6
+length: 17
+browser_path: 'open -a /Applications/Google\ Chrome.app %s'
+feeds:
+  - key: 'bbc'
+    name: 'NHK'
+    link: 'http://feeds.bbci.co.uk/news/rss.xml'
+  - key: 'asa'
+    name: '朝日'
+    link: 'http://www.asahi.com/rss/asahi/newsheadlines.rdf'

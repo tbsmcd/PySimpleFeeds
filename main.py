@@ -1,11 +1,16 @@
+import shutil
+import os
 import PySimpleGUI as sg
 import feedparser
 import yaml
 import webbrowser
+import setting_window
 
 
 class MainWindow:
     def __init__(self):
+        if os.path.isfile('settings.yml') is False:
+            shutil.copyfile('settings.yml.default', 'settings.yml')
         with open('settings.yml') as file:
             self.__config = yaml.safe_load(file.read())
         self.__entries = {}
@@ -17,15 +22,30 @@ class MainWindow:
 
     def __get_all_entries(self):
         for rss in self.__config.get('feeds'):
-            i = 0
             entries = []
-            for ent in feedparser.parse(rss['link'])['entries']:
-                entries.append(
-                    {'site': rss['name'], 'key': rss['key'] + str(i), 'link': ent['link'], 'title': ent['title']}
-                )
-                i += 1
-                if i > self.__config.get('rows', 6):
-                    break
+            feed = feedparser.parse(rss['link'])
+            if feed.status == 200:
+                num_of_ent = len(feed['entries'])
+                for i in range(self.__config.get('rows', 6)):
+                    if i < num_of_ent:
+                        ent = feed['entries'][i]
+                        link = ent['link']
+                        title = ent['title']
+                    else:
+                        link = ''
+                        title = '---'
+                    entries.append(
+                        {'site': rss['name'], 'key': rss['key'] + str(i), 'link': link, 'title': title}
+                    )
+            else:
+                for i in range(self.__config.get('rows', 6)):
+                    if i == 0:
+                        title = "HTTP_STATUS: {0}".format(feed.status)
+                    else:
+                        title = '---'
+                    entries.append(
+                        {'site': rss['name'], 'key': rss['key'] + str(i), 'link': '', 'title': title}
+                    )
             self.__entries[rss['key']] = entries
 
     def __jump_link(self, key: str):
@@ -37,7 +57,7 @@ class MainWindow:
                 if entry['key'] == key:
                     webbrowser.get(browser).open(entry['link'])
 
-    def show(self):
+    def open(self):
         sg.theme(self.__config.get('theme', 'Dark'))
         self.__get_all_entries()
         layout = [[
@@ -50,6 +70,9 @@ class MainWindow:
             event, values = window.read(timeout=60000)
             if event == sg.WIN_CLOSED:
                 break
+            elif event == 'Setting':
+                sw = setting_window.SettingWindow()
+                sw.open()
             if event.startswith('link_'):
                 key = event.replace('link_', '')
                 self.__jump_link(key)
@@ -63,4 +86,4 @@ class MainWindow:
 
 if __name__ == '__main__':
     ps = MainWindow()
-    ps.show()
+    ps.open()
