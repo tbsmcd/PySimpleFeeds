@@ -32,8 +32,7 @@ class MainWindow:
                         link = ent['link']
                         title = ent['title']
                     else:
-                        link = ''
-                        title = ''
+                        link, title = '', ''
                     entries.append(
                         {'site': rss['name'], 'key': rss['key'] + str(i), 'link': link, 'title': title}
                     )
