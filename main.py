@@ -9,16 +9,19 @@ import setting_window
 
 class MainWindow:
     def __init__(self):
+        self.__get_config()
+        self.__entries = {}
+
+    def __get_config(self):
         if os.path.isfile('settings.yml') is False:
             shutil.copyfile('settings.yml.default', 'settings.yml')
         with open('settings.yml') as file:
             self.__config = yaml.safe_load(file.read())
-        self.__entries = {}
 
     def __format_text(self, v):
         default_len = 17
-        return '[{0}] '.format(v['site']) + v['title'][:self.__config.get('length', default_len)] \
-               + ('...' if v['title'][self.__config.get('length', default_len):] else '')
+        return v['title'][:self.__config.get('length', default_len)] \
+            + ('...' if v['title'][self.__config.get('length', default_len):] else '')
 
     def __get_all_entries(self):
         for rss in self.__config.get('feeds'):
@@ -29,12 +32,11 @@ class MainWindow:
                 for i in range(self.__config.get('rows', 6)):
                     if i < num_of_ent:
                         ent = feed['entries'][i]
-                        link = ent['link']
-                        title = ent['title']
+                        link, title = ent['link'], ent['title']
                     else:
                         link, title = '', ''
                     entries.append(
-                        {'site': rss['name'], 'key': rss['key'] + str(i), 'link': link, 'title': title}
+                        {'site': rss['name'], 'key': rss['name'] + str(i), 'link': link, 'title': title}
                     )
             else:
                 for i in range(self.__config.get('rows', 6)):
@@ -43,9 +45,9 @@ class MainWindow:
                     else:
                         title = ''
                     entries.append(
-                        {'site': rss['name'], 'key': rss['key'] + str(i), 'link': '', 'title': title}
+                        {'site': rss['name'], 'key': rss['name'] + str(i), 'link': '', 'title': title}
                     )
-            self.__entries[rss['key']] = entries
+            self.__entries[rss['name']] = entries
 
     def __jump_link(self, key: str):
         browser = self.__config.get('browser_path')
@@ -57,12 +59,12 @@ class MainWindow:
                     webbrowser.get(browser).open(entry['link'])
 
     def open(self):
-        sg.theme(self.__config.get('theme', 'Dark'))
+        sg.theme(self.__config.get('theme', 'DarkBlack'))
         self.__get_all_entries()
         layout = [[
-            sg.Column([[
-                sg.T(self.__format_text(v), enable_events=True, key='link_' + v['key'])] for v in site
-            ]) for site in self.__entries.values()
+            sg.Frame(site[0]['site'], [
+                [sg.T(self.__format_text(v), enable_events=True, key='link_' + v['key'])] for v in site
+            ], border_width=0) for site in self.__entries.values()
         ], [sg.B('Setting')]]
         window = sg.Window('Feeds', layout)
         while True:
@@ -72,7 +74,10 @@ class MainWindow:
             elif event == 'Setting':
                 sw = setting_window.SettingWindow()
                 sw.open()
-            if event.startswith('link_'):
+                window.close()
+                self.__get_config()
+                self.open()
+            elif event.startswith('link_'):
                 key = event.replace('link_', '')
                 self.__jump_link(key)
             elif event in sg.TIMEOUT_KEY:
@@ -81,6 +86,7 @@ class MainWindow:
                     for entry in site:
                         window['link_' + entry['key']].update(self.__format_text(entry))
         window.close()
+        # self.open()
 
 
 if __name__ == '__main__':
