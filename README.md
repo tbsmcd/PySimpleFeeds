@@ -9,7 +9,7 @@ This is an RSS reader widget that works with Python. I made it as a sample. I tr
 ## Demo
 
 ![screen shot](https://user-images.githubusercontent.com/174922/94450738-9512a680-01e8-11eb-8fab-999a33e75fbf.png)
-![screen shot](https://user-images.githubusercontent.com/174922/94450720-904df280-01e8-11eb-84e7-84c77ee29910.png)
+![screen shot](https://user-images.githubusercontent.com/174922/94459882-e9bb1f00-01f2-11eb-873c-81184150369d.png)
 
 
 ## Requirements
