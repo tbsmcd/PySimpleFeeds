@@ -75,8 +75,9 @@ class MainWindow:
                 sw = setting_window.SettingWindow()
                 sw.open()
                 window.close()
-                self.__get_config()
-                self.open()
+                ps = MainWindow()
+                ps.open()
+
             elif event.startswith('link_'):
                 key = event.replace('link_', '')
                 self.__jump_link(key)
