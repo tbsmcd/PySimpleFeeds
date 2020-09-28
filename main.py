@@ -50,13 +50,10 @@ class MainWindow:
             self.__entries[rss['name']] = entries
 
     def __jump_link(self, key: str):
-        browser = self.__config.get('browser_path')
-        if browser is None:
-            return
         for site in self.__entries.values():
             for entry in site:
                 if entry['key'] == key:
-                    webbrowser.get(browser).open(entry['link'])
+                    webbrowser.get(using=None).open(entry['link'])
 
     def open(self):
         sg.theme(self.__config.get('theme', 'DarkBlack'))

@@ -1,4 +1,3 @@
-browser_path: open -a /Applications/Google Chrome.app %s
 feeds:
 - link: https://www.nhk.or.jp/rss/news/cat0.xml
   name: NHK

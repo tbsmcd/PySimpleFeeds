@@ -20,8 +20,6 @@ class SettingWindow:
             messages.append('"Rows" must be a number.')
         if not re.search(r'^[1-9][0-9]*$', values['-LENGTH-']):
             messages.append('"Length" must be a number.')
-        if values['-BROWSER-'].strip() == '':
-            messages.append('"Browser" is not to be blank.')
         for i in range(6):
             name, link = values['-NAME_{0}-'.format(i)].strip(), values['-LINK_{0}-'.format(i)].strip()
             if name != link and (name == '' or link == ''):
@@ -36,9 +34,7 @@ class SettingWindow:
             [sg.T('Number of Rows', size=(self.LABEL_LEN, 1), justification='right'),
              sg.Input(self.__config.get('rows', ''), key='-ROWS-', size=(12, 2))],
             [sg.T('Headline Length', size=(self.LABEL_LEN, 1), justification='right'),
-             sg.Input(self.__config.get('length', ''), key='-LENGTH-', size=(12, 2))],
-            [sg.T('Browser Path', size=(self.LABEL_LEN, 1), justification='right'),
-             sg.Input(self.__config.get('browser_path', ''), key='-BROWSER-', size=(48, 2))]
+             sg.Input(self.__config.get('length', ''), key='-LENGTH-', size=(12, 2))]
         ]
         feeds = self.__config.get('feeds')
         sites = []
@@ -73,7 +69,6 @@ class SettingWindow:
                     settings['theme'] = 'DarkBlack' if values['-DB-'] is True else 'LightGrey2'
                     settings['rows'] = int(values['-ROWS-'])
                     settings['length'] = int(values['-LENGTH-'])
-                    settings['browser_path'] = values['-BROWSER-']
                     settings['feeds'] = []
                     for i in range(6):
                         if values['-NAME_{0}-'.format(i)].strip() != '':
