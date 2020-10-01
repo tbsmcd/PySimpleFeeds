@@ -19,9 +19,7 @@ This is an RSS reader widget that works with Python. I made it as a sample. I tr
 - [PyYaml](https://pyyaml.org/wiki/PyYAMLDocumentation)
 
 ```
-$ pip install pysimplegui
-$ pip install feedparser
-$ pip install PyYaml
+$ pip install -r requirements.txt
 ```
 
 ## Usage
