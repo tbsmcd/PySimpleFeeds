@@ -14,7 +14,6 @@ class SettingWindow:
     def validate(values):
         messages = []
         if not (values['-DB-'] != values['-LG-'] and type(values['-DB-']) == bool and type(values['-LG-']) == bool):
-            print(type(values['-DB-']))
             messages.append('Choose one of the themes.')
         if not re.search(r'^[1-9][0-9]*$', values['-ROWS-']):
             messages.append('"Rows" must be a number.')
@@ -61,7 +60,6 @@ class SettingWindow:
             if event in (sg.WIN_CLOSED, 'Cancel'):
                 break
             if event == 'Save':
-                print(values)
                 messages = SettingWindow.validate(values)
                 if len(messages) == 0:
                     # save
