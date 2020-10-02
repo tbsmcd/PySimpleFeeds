@@ -1,1 +1,6 @@
 settings.yml
+.idea/
+dist/
+build/
+venv/
+setup.py
