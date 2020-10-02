@@ -4,3 +4,4 @@ dist/
 build/
 venv/
 setup.py
+__pycache__/
