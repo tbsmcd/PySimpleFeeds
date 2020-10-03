@@ -25,6 +25,23 @@ class SettingWindow:
                 messages.append('{0}: Only one of the name and link should not be blank'.format(i))
         return messages
 
+    @staticmethod
+    def save(values):
+        settings = dict()
+        settings['theme'] = 'DarkBlack' if values['-DB-'] is True else 'LightGrey2'
+        settings['rows'] = int(values['-ROWS-'])
+        settings['length'] = int(values['-LENGTH-'])
+        settings['feeds'] = []
+        for i in range(6):
+            if values['-NAME_{0}-'.format(i)].strip() != '':
+                settings['feeds'].append({
+                    'name': values['-NAME_{0}-'.format(i)].strip(),
+                    'link': values['-LINK_{0}-'.format(i)].strip()
+                })
+        with open('settings.yml', 'w') as file:
+            yaml.dump(settings, file, encoding='utf-8', allow_unicode=True)
+        return
+
     def open(self):
         style = [
             [sg.T('Theme', size=(self.LABEL_LEN, 1), justification='right'),
@@ -63,19 +80,7 @@ class SettingWindow:
                 messages = SettingWindow.validate(values)
                 if len(messages) == 0:
                     # save
-                    settings = dict()
-                    settings['theme'] = 'DarkBlack' if values['-DB-'] is True else 'LightGrey2'
-                    settings['rows'] = int(values['-ROWS-'])
-                    settings['length'] = int(values['-LENGTH-'])
-                    settings['feeds'] = []
-                    for i in range(6):
-                        if values['-NAME_{0}-'.format(i)].strip() != '':
-                            settings['feeds'].append({
-                                'name': values['-NAME_{0}-'.format(i)].strip(),
-                                'link': values['-LINK_{0}-'.format(i)].strip()
-                            })
-                    with open('settings.yml', 'w') as file:
-                        yaml.dump(settings, file, encoding='utf-8', allow_unicode=True)
+                    SettingWindow.save(values)
                     break
                 else:
                     message = '\n'.join(messages)
