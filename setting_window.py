@@ -22,11 +22,11 @@ class SettingWindow:
         for i in range(6):
             name, link = values['-NAME_{0}-'.format(i)].strip(), values['-LINK_{0}-'.format(i)].strip()
             if name != link and (name == '' or link == ''):
-                messages.append('{0}: Only one of the name and link should not be blank'.format(i))
+                messages.append('{0}: Only one of the name and link should not be blank.'.format(i))
         return messages
 
     @staticmethod
-    def save(values):
+    def save(values, file_name='settings.yml'):
         settings = dict()
         settings['theme'] = 'DarkBlack' if values['-DB-'] is True else 'LightGrey2'
         settings['rows'] = int(values['-ROWS-'])
@@ -38,7 +38,7 @@ class SettingWindow:
                     'name': values['-NAME_{0}-'.format(i)].strip(),
                     'link': values['-LINK_{0}-'.format(i)].strip()
                 })
-        with open('settings.yml', 'w') as file:
+        with open(file_name, 'w') as file:
             yaml.dump(settings, file, encoding='utf-8', allow_unicode=True)
         return
 
