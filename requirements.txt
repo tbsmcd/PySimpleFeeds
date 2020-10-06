@@ -1,3 +1,6 @@
 pysimplegui
 feedparser
 PyYaml
+
+# for test
+pytest
