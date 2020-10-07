@@ -26,8 +26,10 @@ $ pipenv install
 
 ## Usage
 
-- `$ cp settings.yml.sample settings.yml`  
-- `$ python main.py` (adapt to your environment.)
+```
+$ cp settings.yml.sample settings.yml  
+$ python main.py # Adapt to your environment.
+```
 
 ## Author
 
