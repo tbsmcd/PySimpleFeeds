@@ -14,7 +14,7 @@ def test_validate_styles_are_same_error():
     assert 'Choose one of the themes.' in SettingWindow.validate(values)
 
 
-def test_validate_styles_are_not_bool():
+def test_validate_styles_are_not_bool_error():
     values = {
         '-DB-': '',
         '-LG-': True,
