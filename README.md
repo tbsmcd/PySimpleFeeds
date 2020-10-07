@@ -14,12 +14,14 @@ This is an RSS reader widget that works with Python. I made it as a sample. I tr
 
 ## Requirements
 
+- [Pipenv](https://pipenv.pypa.io/en/latest/)
 - [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)
 - [feedparser](https://pythonhosted.org/feedparser/)
 - [PyYaml](https://pyyaml.org/wiki/PyYAMLDocumentation)
 
 ```
-$ pip install -r requirements.txt
+$ pip install pipenv
+$ pipenv install
 ```
 
 ## Usage
