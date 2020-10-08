@@ -15,6 +15,11 @@ def provide_values(params={}):
     return values
 
 
+def test_validate_with_collect_values_success():
+    values = provide_values()
+    assert len(SettingWindow.validate(values)) == 0
+
+
 def test_validate_styles_are_same_error():
     values = provide_values({'-LG-': True})
     assert 'Choose one of the themes.' in SettingWindow.validate(values)
