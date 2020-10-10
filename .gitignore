@@ -6,3 +6,4 @@ venv/
 setup.py
 __pycache__/
 Pipfile.lock
+.coverage
