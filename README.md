@@ -1,4 +1,4 @@
-# PySimpleFeeds <img alt="pytest" src="https://github.com/tbsmcd/PySimpleFeeds/workflows/Run tests/badge.svg">
+# PySimpleFeeds <img alt="pytest" src="https://github.com/tbsmcd/PySimpleFeeds/workflows/Testing/badge.svg">
 
 This is an RSS reader using PySimpleGui.
 

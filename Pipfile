@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+pytest-cov = "*"
 
 [packages]
 feedparser = "*"
@@ -15,4 +16,4 @@ PyYAML = "*"
 python_version = "3.7"
 
 [scripts]
-tests = "pytest -v"
+tests = "pytest -v --cov=. tests/"
