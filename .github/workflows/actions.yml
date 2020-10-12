@@ -1,5 +1,11 @@
 name: Testing
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - synchronize
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,5 +23,17 @@ jobs:
           pipenv install --dev
       - name: Run pytest
         run: pipenv run tests | tee cov.txt
-      - name: echo txt
-        run: cat cov.txt
+      - name: coverage
+        id: coverage
+        run: cat cov.test | grep '^TOTAL.*%$' | awk '{print $3}'
+      - name: echo cov.
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@3
+        with:
+          acript: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Pytest coverage: " + coverage.STDOUT
+            })
