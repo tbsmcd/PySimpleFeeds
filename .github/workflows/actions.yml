@@ -31,9 +31,10 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
+            const output = `Pytest coverage ${{steps.coverage.putputs.STDOUT}}`
             github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Pytest coverage: " + ${{ steps.coverage.outputs.STDOUT }}
+              body: output
             })
