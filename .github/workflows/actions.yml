@@ -28,7 +28,7 @@ jobs:
         run: cat cov.test | grep '^TOTAL.*%$' | awk '{print $3}'
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/github-script@3
+        uses: actions/github-script@v3
         with:
           acript: |
             github.issues.createComment({
