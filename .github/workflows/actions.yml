@@ -24,7 +24,8 @@ jobs:
       - name: Run pytest
         run: pipenv run tests | tee cov.txt
       - name: coverage
-        id: coverage
+        outputs:
+          result: ${{ steps.coverage.outputs.result }}
         run: cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}'
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
