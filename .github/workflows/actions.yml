@@ -18,4 +18,4 @@ jobs:
       - name: Run pytest
         run: pipenv run tests | tee cov.txt
       - name: echo txt
-        run: echo cov.txt
+        run: cat cov.txt
