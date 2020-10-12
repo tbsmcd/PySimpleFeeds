@@ -25,13 +25,13 @@ jobs:
         run: pipenv run tests | tee cov.txt
       - name: coverage
         id: coverage
-        run: cat cov.txt | grep '^TOTAL.*%$' | awk '{print $3}'
+        run: cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}'
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v3
         with:
           script: |
-            const output = `Pytest coverage ${{ steps.coverage.outputs.stdout }}`
+            const output = `Pytest coverage ${{ steps.coverage.outputs.result }}`
             github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
