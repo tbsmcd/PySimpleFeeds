@@ -25,7 +25,7 @@ jobs:
         run: pipenv run tests | tee cov.txt
       - name: coverage
         id: coverage
-        run: cat cov.test | grep '^TOTAL.*%$' | awk '{print $3}'
+        run: cat cov.txt | grep '^TOTAL.*%$' | awk '{print $3}'
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v3
