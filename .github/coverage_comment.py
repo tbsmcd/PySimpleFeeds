@@ -18,7 +18,9 @@ def create_comment():
 **Coverage: {cov}**
             
 <details>
+```
 {txt}
+```
 </details> 
         """.format(cov=coverage, txt=txt)
         print(comment)
