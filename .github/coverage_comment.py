@@ -22,8 +22,8 @@ def create_comment():
 </details> 
         """.format(cov=coverage, txt=txt)
         # comment = textwrap.dedent(comment).strip()
-        print(comment)
-
+        # print(comment)
+        print('AAAgit ')
 
 if __name__ == '__main__':
     create_comment()
