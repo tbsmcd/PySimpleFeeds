@@ -26,7 +26,7 @@ jobs:
       - name: Set coverage to outputs
         id: covrage
         run: |
-          cov = `cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}'`
+          cov=`cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}'`
           echo "::set-output name=result::${cov}"
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
