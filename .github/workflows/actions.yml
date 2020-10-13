@@ -6,6 +6,7 @@ on:
   pull_request:
     types:
       - synchronize
+      - opened
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,6 +29,7 @@ jobs:
         run: |
           cov=$(python .github/coverage_comment.py)
           cov="${cov//$'\n'/'%0A'}"
+          cov="${cov//$'\r'/''}"
           echo "::set-output name=result::${cov}"
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
