@@ -14,6 +14,11 @@ def create_comment():
         coverage = coverage.split()[3]
         txt = ''.join(lines)
         comment = """
+<style>
+pre br {
+  display: none;
+}
+</style>
 ## Pytest coverage
 :+1: **Coverage: {cov}**
             
