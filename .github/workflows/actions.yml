@@ -23,16 +23,16 @@ jobs:
           pipenv install --dev
       - name: Run pytest
         run: pipenv run tests | tee cov.txt
-      - name: coverage
-        outputs:
-          result: ${{ steps.coverage.outputs.result }}
-        run: cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}'
+      - name: Set coverage to outputs
+        id: covrage
+        run: |
+          echo "##[set-output name=result;]$(cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}')"
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v3
         with:
           script: |
-            const output = `Pytest coverage ${{ steps.coverage.outputs.result }}`
+            const output = `Pytest coverage: ${{ steps.coverage.outputs.result }}`
             github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
