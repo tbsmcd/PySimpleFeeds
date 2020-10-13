@@ -15,9 +15,7 @@ def create_comment():
         txt = ''.join(lines)
         comment = """
 <style>
-pre br {
-  display: none;
-}
+pre br {{display: none;}}
 </style>
 ## Pytest coverage
 :+1: **Coverage: {cov}**
