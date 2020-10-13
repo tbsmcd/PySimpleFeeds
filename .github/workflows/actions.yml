@@ -28,6 +28,7 @@ jobs:
         id: coverage
         run: |
           cov=$(python .github/coverage_comment.py)
+          cov="${cov//$'\n'/'%0A'}"
           echo "::set-output name=result::${cov}"
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
