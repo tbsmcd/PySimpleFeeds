@@ -26,13 +26,13 @@ jobs:
       - name: Set coverage to outputs
         id: coverage
         run: |
-          echo "::set-output name=result::$(cat cov.txt | grep '^TOTAL.*%$' | awk '{print $4}')"
+          echo "::set-output name=result::$(python .github/coverage_comment.py)"
       - name: echo cov.
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v3
         with:
           script: |
-            const output = `Pytest coverage: ${{ steps.coverage.outputs.result }}`
+            const output = `${{ steps.coverage.outputs.result }}`
             github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
