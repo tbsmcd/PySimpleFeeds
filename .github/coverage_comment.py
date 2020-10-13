@@ -22,7 +22,7 @@ def create_comment():
 {txt}
 </pre>
 </details> 
-        """.format(cov=coverage, txt=txt).replace('-----------', '===========')
+        """.format(cov=coverage, txt=txt).replace('-----------', '===========').replace('------', '=====')
         print(comment)
 
 
