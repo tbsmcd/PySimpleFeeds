@@ -14,7 +14,7 @@ def create_comment():
         coverage = coverage.split()[3]
         txt = ''.join(lines)
         comment = """
-<img src="https://img.shields.io/badge/pytest-passing-9ACD32.svg" alt="pytest passing"> <img src="https://img.shields.io/badge/coverage-{cov}25-6A5ACD.svg" alt="coverage">
+<img src="https://img.shields.io/badge/pytest-passing-9ACD32.svg" alt="pytest passing"> <img src="https://img.shields.io/badge/coverage-{cov}2525-6A5ACD.svg" alt="coverage">
 <details>
 <pre>
 <code>
