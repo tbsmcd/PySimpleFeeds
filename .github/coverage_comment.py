@@ -23,7 +23,8 @@ def create_comment():
 </pre>
 </details> 
         """.format(cov=coverage, txt=txt)\
-            .replace('-----------', '___________').replace('------', '')
+            .replace('------', '')\
+            .replace('_________________________________', '\_________________________________')
         print(comment)
 
 
