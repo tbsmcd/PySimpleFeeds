@@ -15,17 +15,18 @@ def create_comment():
         txt = ''.join(lines)
         comment = """
 <style>
-pre br {{display: none;}}
 </style>
 ## Pytest coverage
 :+1: **Coverage: {cov}**
             
 <details>
 <pre>
+<code>
 {txt}
+</code>
 </pre>
 </details> 
-        """.format(cov=coverage, txt=txt).replace('-----------', '___________').replace('------', '')
+        """.format(cov=coverage, txt=txt)
         print(comment)
 
 
