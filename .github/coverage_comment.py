@@ -14,9 +14,7 @@ def create_comment():
         coverage = coverage.split()[3]
         txt = ''.join(lines)
         comment = """
-## Pytest Coverage
-:+1: **Cover: {cov}**
-            
+<img src="https://img.shields.io/badge/pytest-passing-9ACD32.svg" alt="pytest passing"> <img src="https://img.shields.io/badge/coverage-{cov}2525-6A5ACD.svg" alt="coverage">
 <details>
 <pre>
 <code>
@@ -25,7 +23,8 @@ def create_comment():
 </pre>
 </details> 
         """.format(cov=coverage, txt=txt)\
-            .replace('-----------', '___________').replace('------', '')
+            .replace('-----------', '___________').replace('------', '')\
+            .replace('_________________________________', ' ')
         print(comment)
 
 
