@@ -8,7 +8,7 @@ on:
       - synchronize
       - opened
 jobs:
-  build:
+  pytest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
