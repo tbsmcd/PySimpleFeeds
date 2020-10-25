@@ -30,7 +30,7 @@ jobs:
           cov=$(python .github/coverage_comment.py)
           cov="${cov//$'\n'/'%0A'}"
           echo "::set-output name=result::${cov}"
-      - name: Comment coverage
+      - name: Comment coverage(Upsert)
         if: ${{ github.event_name == 'pull_request' }}
         uses: marocchino/sticky-pull-request-comment@v1
         with:
